@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import surf.practice.fragment_navigation.MainActivity
 import surf.practice.fragment_navigation.databinding.ThirdTabFragmentBinding
-import surf.practice.fragment_navigation.fragments.DetailsFragment
 
 class ThirdTabFragment : Fragment() {
 
@@ -28,8 +26,6 @@ class ThirdTabFragment : Fragment() {
     }
 
     private fun initListeners() = with(binding) {
-        openDetailsBtn.setOnClickListener {
-            (activity as MainActivity).rootFragmentNavigator.replace(DetailsFragment())
-        }
+        openDetailsBtn.setOnClickListener { /* TODO открытие детального фрагмента */ }
     }
 }
