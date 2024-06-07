@@ -2,6 +2,7 @@ package surf.practice.fragment_navigation.navigation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 
 class TabFragmentNavigator(
     private val fragmentManager: FragmentManager,
@@ -28,11 +29,11 @@ class TabFragmentNavigator(
 
     fun replace(fragment: Fragment) {
         fragmentManager.executePendingTransactions()
-        fragmentManager.beginTransaction()
-            .replace(fragmentContainerId, fragment)
-            .setReorderingAllowed(true)
-            .addToBackStack(currentTabTag)
-            .commit()
+        fragmentManager.commit {
+            replace(fragmentContainerId, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(currentTabTag)
+        }
     }
 
     fun popBackstack() {
@@ -46,10 +47,10 @@ class TabFragmentNavigator(
         }
         currentTabTag = tabTag
         tabs.add(tabTag)
-        fragmentManager.beginTransaction()
-            .replace(fragmentContainerId, fragment)
-            .setReorderingAllowed(true)
-            .addToBackStack(tabTag)
-            .commit()
+        fragmentManager.commit {
+            replace(fragmentContainerId, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(tabTag)
+        }
     }
 }
